@@ -17,10 +17,11 @@ ActiveRecord::Schema.define(version: 20190618163921) do
   enable_extension "hstore"
 
   create_table "links", force: :cascade do |t|
-    t.string "url"
-    t.string "preview_image"
+    t.string "host"
+    t.string "path"
     t.hstore "params"
     t.hstore "common_keys"
+    t.string "preview_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["common_keys"], name: "index_links_on_common_keys", using: :gin

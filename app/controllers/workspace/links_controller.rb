@@ -12,7 +12,11 @@ module Workspace
         if response.respond_to?(:error) || response.code != 200
           @message[:error] = 'site is currently unavailable'
         else
-          LinksService.instance.perform(response.body, current_user.id)
+          params_sorted = uri.query ? Hash[*uri.query.split('=')] : uri.query
+          link = Link.new(host: uri.host, path: uri.path, params: params_sorted)
+          link.common_keys = LinksService.instance.perform(uri, response.body)
+          link.save
+          current_user.links << link
         end
       end
       render json: @message

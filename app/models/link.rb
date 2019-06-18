@@ -29,11 +29,21 @@ class Link < ApplicationRecord
   has_many :user_links
   has_many :users, through: :user_links
 
-  protected
+  def self.find_by_full_uri(uri)
+    params = uri.query.respond_to?(:split) ? uri.query.split('?') : nil
+    find_by(host: uri.host, path: uri.path, uri: params.sort)
+  end
 
   ## Instance methods
+  def params_match?(params_match)
+    self if params == params_match
+  end
+
+  protected
+
+
   def fetch_preview_image
-    self.preview_image = LinkThumbnailer.generate(url).images.first.src
+    self.preview_image = LinkThumbnailer.generate(self.url).images.first.src
   rescue LinkThumbnailer::Exceptions, NoMethodError => exception
     self.preview_image = nil
   end
