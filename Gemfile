@@ -62,3 +62,5 @@ gem "devise", "~> 4.6"
 gem "annotate", "~> 2.7"
 
 gem "awesome_print", "~> 1.8"
+
+gem "haml-rails", "~> 2.0"
