@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module StopWords
+module WordsFilter
   # This regular expression validates a token
   TOKEN_REGEXP = /^[a-zA-Z0-9]+$/
 
-   STOP_WORDS = [
+   BLACK_LIST = [
     'a','cannot','into','our','thus','about','co','is','ours','to','above',
     'could','it','ourselves','together','across','down','its','out','too',
     'after','during','itself','over','toward','afterwards','each','last','own',
@@ -36,10 +36,10 @@ module StopWords
     ]
 
     def self.is?(token)
-      STOP_WORDS.member?(token)
+      BLACK_LIST.member?(token)
     end
 
     def self.filter(arr)
-      arr.split(' ').select { |w| ((w =~ TOKEN_REGEXP) == 0) && !(STOP_WORDS.member?(w)) }
+      arr.select { |w| ((w =~ TOKEN_REGEXP) == 0) && !(BLACK_LIST.member?(w)) }
     end
 end
