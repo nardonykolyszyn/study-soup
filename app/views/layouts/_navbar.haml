@@ -1,6 +1,7 @@
 %nav
   .nav-wrapper.red.darken-2
-    %a.brand-logo.center{href: root_path} Study Soup
+    %a.brand-logo.center{href: root_path} NPL with Rails
     %ul#nav-mobile.right.hide-on-med-and-down
-      %li
-        = link_to 'Logout', destroy_user_session_path, method: :delete
+      - if user_signed_in?
+        %li
+          = link_to 'Logout', destroy_user_session_path, method: :delete
