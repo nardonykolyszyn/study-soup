@@ -2,7 +2,6 @@
 
 module Workspace
   class LinksController < ApplicationController
-    include Validatable
     def create
       @message = {}
       # It validates URL scheme using URI predefined regular expression.

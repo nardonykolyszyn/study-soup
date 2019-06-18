@@ -77,3 +77,5 @@ gem "httparty", "~> 0.17.0"
 gem "ruby-readability", "~> 0.7.0"
 
 gem 'words_counted'
+
+gem "wicked", "~> 1.3"
