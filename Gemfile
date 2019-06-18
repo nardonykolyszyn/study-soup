@@ -78,3 +78,5 @@ gem "ruby-readability", "~> 0.7.0"
 gem 'words_counted'
 
 gem "wicked", "~> 1.3"
+
+gem "cocoon", "~> 1.2"

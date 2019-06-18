@@ -29,6 +29,10 @@ class Link < ApplicationRecord
   has_many :user_links
   has_many :users, through: :user_links
 
+  ## Nested attributes
+  accepts_nested_attributes_for :tags, reject_if: :all_blank, allow_destroy: true
+
+  ## Custom Active Record matcher
   def self.find_by_full_uri(uri)
     # params = uri.query.respond_to?(:split) ? Hash[*uri.query.split('=')].sort : nil
     find_or_initialize_by(host: uri.host, path: uri.path)
@@ -41,9 +45,8 @@ class Link < ApplicationRecord
 
   protected
 
-
   def fetch_preview_image
-    self.preview_image = LinkThumbnailer.generate(self.url).images.first.src
+    self.preview_image = LinkThumbnailer.generate("http://#{self.host}").images.first.src
   rescue LinkThumbnailer::Exceptions, NoMethodError => exception
     self.preview_image = nil
   end

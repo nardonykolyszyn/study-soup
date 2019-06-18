@@ -7,6 +7,4 @@
         - else
           = image_tag('301.png', widht: 150, height: 150)
       .card-content
-        %p= link.url.truncate(22)
-        - link.tags.each do |tag|
-          %p= tag.name
+        %p= link.host

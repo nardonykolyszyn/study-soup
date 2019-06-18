@@ -14,3 +14,4 @@
 //= require turbolinks
 //= require jquery
 //= require materialize
+//= require cocoon

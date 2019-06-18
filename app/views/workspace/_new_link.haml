@@ -4,3 +4,10 @@
     = simple_form_for(:link, url: workspace_links_path, method: :post) do |f|
       = f.text_field :url, placeholder: 'http://facebook.com'
       = f.submit 'Parse', class: 'btn white red-text full', style: 'width: 100%'
+      = f.simple_fields_for(:tags) do |tag|
+        = tag.text_field :id, collection: Tag.all.collect { |t| t.id }
+
+:javascript
+  $(document).ready( () => {
+    $('select').formSelect();
+  });
