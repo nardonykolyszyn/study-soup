@@ -38,6 +38,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'xray-rails'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -64,3 +65,5 @@ gem "annotate", "~> 2.7"
 gem "awesome_print", "~> 1.8"
 
 gem "haml-rails", "~> 2.0"
+
+gem "simple_form", "~> 4.1"
