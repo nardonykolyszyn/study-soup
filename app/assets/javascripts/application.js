@@ -14,3 +14,4 @@
 //= require turbolinks
 //= require jquery
 //= require xray
+//= require materialize

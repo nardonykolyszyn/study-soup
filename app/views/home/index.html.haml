@@ -1,2 +1,10 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+.container
+  .row
+    .col.s6.push-s3
+      .card
+        .card-title
+          %p.flow-text.center Hello
+        .card-content
+          = simple_form_for(:link, url: workspace_links_path) do |f|
+            = f.text_field :url, placeholder: 'http://facebook.com'
+            = f.submit 'Search', class: 'btn yellow darken-3'

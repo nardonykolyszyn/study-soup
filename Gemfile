@@ -68,3 +68,4 @@ gem "awesome_print", "~> 1.8"
 gem "haml-rails", "~> 2.0"
 
 gem "simple_form", "~> 4.1"
+gem 'materialize-sass', '~> 1.0.0'

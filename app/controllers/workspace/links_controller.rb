@@ -2,13 +2,13 @@
 
 module Workspace
   class LinksController < ApplicationController
+    include Validatable
     def create
-      link = current_user.links.build(link_params)
-      if link.valid?
-        link.save
-        render json: link and return
+      url = URI.regexp.match(link_params[:url])
+      if url.blank?
+        render json: { error: 'invalid url' }
       else
-        render json: link.errors.messages and return
+        render json: validate_url(link_params[:url]) and return
       end
     end
 
