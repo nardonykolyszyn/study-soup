@@ -39,6 +39,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'xray-rails'
   gem 'pry-rails'
+  gem 'faker', require: false
 end
 
 group :development do

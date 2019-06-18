@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20190618065928) do
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.integer "resource_id"
-    t.string "resource_type"
+    t.integer "taggable_id"
+    t.string "taggable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
