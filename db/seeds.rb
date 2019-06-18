@@ -9,7 +9,9 @@ user.save!
 tags = %i[football programming couples instagram food friday dance travel sunshine newyork socialnetwork]
 
 100.times do
-  link = Link.create(url: Faker::Internet.unique.url)
+  uri = URI(Faker::Internet.unique.url)
+  params = uri.query.nil? ? uri.query : uri.query.split('?').sort
+  link = Link.create(host: uri.host, path: uri.path, params: params)
   link.tags.build(name: tags.sample)
   link.save!
 end
