@@ -1,7 +1,6 @@
-%h1 Workspace#index
-%p Find me in app/views/workspace/index.html.haml
-
-= link_to 'Logout', destroy_user_session_path, method: :delete
-
-= render 'links'
-= render 'new_link'
+.container
+  .row
+    .col.s12
+      = render 'new_link'
+    .col.s12
+      = render 'links'

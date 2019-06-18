@@ -1,3 +1,6 @@
-= simple_form_for(:link, url: workspace_links_path, method: :post) do |f|
-  = f.text_field :url, placeholder: 'http://facebook.com'
-  = f.submit 'Parse'
+.card
+  .card-content
+    %h4.card-title.flow-text.center Add new website
+    = simple_form_for(:link, url: workspace_links_path, method: :post) do |f|
+      = f.text_field :url, placeholder: 'http://facebook.com'
+      = f.submit 'Parse', class: 'btn white red-text full', style: 'width: 100%'

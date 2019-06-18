@@ -1,0 +1,6 @@
+%nav
+  .nav-wrapper.red.darken-2
+    %a.brand-logo.center{href: root_path} Study Soup
+    %ul#nav-mobile.right.hide-on-med-and-down
+      %li
+        = link_to 'Logout', destroy_user_session_path, method: :delete

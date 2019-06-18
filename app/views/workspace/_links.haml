@@ -1,9 +1,12 @@
-%ul
-  - current_user.links.each do |link|
-    %li= link.url
-    %ol= link.params
-    - if link.preview_image.present?
-      = image_tag(link.preview_image)
-    - else
-      = image_tag('301.png')
-    = link.tags.pluck(:name)
+- current_user.links.each do |link|
+  .col.s4
+    .card
+      .card-image
+        - if link.preview_image.present?
+          = image_tag(link.preview_image, with: 200)
+        - else
+          = image_tag('301.png', widht: 150, height: 150)
+      .card-content
+        %p= link.url.truncate(22)
+        - link.tags.each do |tag|
+          %p= tag.name
