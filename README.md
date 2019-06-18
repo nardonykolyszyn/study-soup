@@ -1,6 +1,6 @@
 
 # Brief
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/b1d3fb70e442004d49ed/maintainability)](https://codeclimate.com/github/devpolish/study-soup/maintainability)
   
 
 Build an application that allows an authenticated user to add URLs and assign tags to them.
