@@ -2,5 +2,8 @@
   - current_user.links.each do |link|
     %li= link.url
     %ol= link.params
-    = image_tag(link.preview_image)
-    = link.tags.to_yaml
+    - if link.preview_image.present?
+      = image_tag(link.preview_image)
+    - else
+      = image_tag('301.png')
+    = link.tags.pluck(:name)

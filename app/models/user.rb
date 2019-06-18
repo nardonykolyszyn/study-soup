@@ -28,5 +28,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :links
+
+  has_many :user_links
+  has_many :links, through: :user_links
 end

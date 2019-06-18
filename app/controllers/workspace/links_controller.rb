@@ -4,13 +4,19 @@ module Workspace
   class LinksController < ApplicationController
     include Validatable
     def create
-      url = URI.regexp.match(link_params[:url])
-      if !url.blank? && validate_url(link_params[:url])
-        @link = current_user.links.create(link_params)
-        render json: @link and return
-      else
-        render json: { error: 'Invalid url' }
+      @message = {}
+      # It validates URL scheme using URI predefined regular expression.
+      uri = link_params[:url].scan(URI.regexp).blank? ? @message[:error] = 'invalid url' : URI(link_params[:url])
+      # It validates the website is up and running
+      if @message[:error].nil?
+        response = Net::HTTP.start(uri.host, uri.port, read_timeout: 300) { |http| http.request(uri) }
+        if response.respond_to?(:error) || response.code != 200
+          @message[:error] = 'site is currently unavailable'
+        else
+          LinksService.instance.perform(response.body, current_user.id)
+        end
       end
+      render json: @message
     end
 
     private

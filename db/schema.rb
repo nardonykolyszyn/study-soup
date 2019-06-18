@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190618065928) do
+ActiveRecord::Schema.define(version: 20190618163921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,8 @@ ActiveRecord::Schema.define(version: 20190618065928) do
     t.string "url"
     t.string "preview_image"
     t.jsonb "params", default: "{}"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -33,6 +31,15 @@ ActiveRecord::Schema.define(version: 20190618065928) do
     t.string "taggable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_links", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "link_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_user_links_on_link_id"
+    t.index ["user_id"], name: "index_user_links_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,5 +57,6 @@ ActiveRecord::Schema.define(version: 20190618065928) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "links", "users", on_delete: :cascade
+  add_foreign_key "user_links", "links", on_delete: :cascade
+  add_foreign_key "user_links", "users", on_delete: :cascade
 end
