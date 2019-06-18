@@ -5,10 +5,11 @@ class CreateLinks < ActiveRecord::Migration[5.1]
     enable_extension 'hstore' unless extension_enabled?('hstore')
 
     create_table :links do |t|
-      t.string :url
-      t.string :preview_image
+      t.string :host
+      t.string :path
       t.hstore :params
       t.hstore :common_keys
+      t.string :preview_image
       t.timestamps
     end
     add_index :links, :common_keys, using: :gin
