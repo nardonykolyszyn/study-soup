@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  
+
   root 'workspace#index'
 
   devise_for :users, path: 'auth', path_names: {
@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  namespace :workspace do
+    resources :links, only: :create
+  end
 end

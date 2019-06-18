@@ -1,0 +1,3 @@
+= simple_form_for(:link, url: workspace_links_path, method: :post) do |f|
+  = f.text_field :url, placeholder: 'http://facebook.com'
+  = f.submit 'Parse'
