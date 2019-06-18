@@ -5,7 +5,7 @@ require 'singleton'
 class LinksService
   include Singleton
 
-  TAGS = %w[h1 h2 h3 h4 h5 p span b li strong].freeze
+  TAGS = %w[h1 h2 h3 h4 h5 p span b li strong tt i big small em caption label].freeze
 
   def perform(uri, response)
     dom = Nokogiri::HTML(response)
