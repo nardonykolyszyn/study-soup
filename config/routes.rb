@@ -2,9 +2,7 @@
 
 Rails.application.routes.draw do
 
-  root 'home#index'
-
-  get :workspace, to: 'workspace#index'
+  root 'workspace#index'
 
   devise_for :users, path: 'auth', path_names: {
     sign_in: 'login', sign_up: 'signup', sign_out: 'logout'
