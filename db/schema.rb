@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190618163921) do
+ActiveRecord::Schema.define(version: 20190618174716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
+  enable_extension "hstore"
 
   create_table "links", force: :cascade do |t|
     t.string "url"
@@ -22,6 +23,8 @@ ActiveRecord::Schema.define(version: 20190618163921) do
     t.jsonb "params", default: "{}"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.hstore "common_keys"
+    t.index ["common_keys"], name: "index_links_on_common_keys", using: :gin
   end
 
   create_table "tags", force: :cascade do |t|
