@@ -14,7 +14,8 @@ class LinksService
     TAGS.each do |tag|
       dom.xpath("//#{tag}").map { |obj| payload[tag].push(obj.text.strip) }
     end
-    counter(payload.values.join.strip).to_h
+    filtered_words = StopWords.filter payload.values.flatten.reject(&:empty?).join(' ')
+    counter(filtered_words).to_h
   end
 
   private

@@ -19,6 +19,7 @@ module Workspace
           unless link.persisted?
             link = Link.new(host: uri.host, path: uri.path, params: params_sorted)
             link.common_keys = LinksService.instance.perform(response.body)
+            render json: link
             link.save
           end
           current_user.links << link
