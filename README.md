@@ -63,3 +63,32 @@ Please give careful consideration to the following:
 - Paying attention to security (registration, login, authentication) is a plus
 
 - Implementation of Software Design Principles and Design patterns is also a plus
+
+
+# Brakeman report (Vulnerabilities report)
+
+ ```bash
+
+== Brakeman Report ==
+
+Application Path: /home/devpolish/Desktop/StudySoup
+Rails Version: 5.1.7
+Brakeman Version: 4.5.1
+Scan Date: 2019-06-18 14:24:38 -0500
+Duration: 0.301599779 seconds
+Checks Run: BasicAuth, BasicAuthTimingAttack, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, DynamicFinders, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, MimeTypeDoS, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NestedAttributesBypass, NumberToCurrency, PermitAttributes, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, RouteDoS, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, SprocketsPathTraversal, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing
+
+== Overview ==
+
+Controllers: 10
+Models: 5
+Templates: 22
+Errors: 0
+Security Warnings: 0
+
+== Warning Types ==
+
+
+No warnings found
+
+ ``` 
