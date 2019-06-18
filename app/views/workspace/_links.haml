@@ -2,3 +2,4 @@
   - current_user.links.each do |link|
     %li= link.url
     %ol= link.params
+    = image_tag(link.preview_image)

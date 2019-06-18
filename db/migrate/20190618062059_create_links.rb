@@ -4,6 +4,7 @@ class CreateLinks < ActiveRecord::Migration[5.1]
     
     create_table :links do |t|
       t.string :url
+      t.string :preview_image
       t.jsonb :params, default: '{}'
       t.belongs_to :user, foreign_key: { on_delete: :cascade }, index: true
    

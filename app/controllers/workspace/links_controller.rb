@@ -5,10 +5,11 @@ module Workspace
     include Validatable
     def create
       url = URI.regexp.match(link_params[:url])
-      if url.blank?
-        render json: { error: 'invalid url' }
+      if !url.blank? && validate_url(link_params[:url])
+        @link = current_user.links.create(link_params)
+        render json: @link and return
       else
-        render json: validate_url(link_params[:url]) and return
+        render json: { error: 'Invalid url' }
       end
     end
 

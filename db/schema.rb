@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20190618065928) do
 
   create_table "links", force: :cascade do |t|
     t.string "url"
+    t.string "preview_image"
     t.jsonb "params", default: "{}"
     t.bigint "user_id"
     t.datetime "created_at", null: false
