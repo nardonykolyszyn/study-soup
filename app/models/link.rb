@@ -6,7 +6,7 @@
 #
 #  id            :bigint           not null, primary key
 #  common_keys   :hstore
-#  params        :jsonb
+#  params        :hstore
 #  preview_image :string
 #  url           :string
 #  created_at    :datetime         not null
@@ -15,6 +15,7 @@
 # Indexes
 #
 #  index_links_on_common_keys  (common_keys) USING gin
+#  index_links_on_params       (params) USING gin
 #
 
 class Link < ApplicationRecord
