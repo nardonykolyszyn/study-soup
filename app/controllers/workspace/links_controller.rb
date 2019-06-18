@@ -13,9 +13,12 @@ module Workspace
           @message[:error] = 'site is currently unavailable'
         else
           params_sorted = uri.query ? Hash[*uri.query.split('=')] : uri.query
-          link = Link.new(host: uri.host, path: uri.path, params: params_sorted)
-          link.common_keys = LinksService.instance.perform(uri, response.body)
-          link.save
+          link = Link.find_by_full_uri(uri)
+          unless link.persisted?
+            link = Link.new(host: uri.host, path: uri.path, params: params_sorted)
+            link.common_keys = LinksService.instance.perform(uri, response.body)
+            link.save
+          end
           current_user.links << link
         end
       end

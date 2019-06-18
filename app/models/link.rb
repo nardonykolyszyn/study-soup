@@ -30,8 +30,8 @@ class Link < ApplicationRecord
   has_many :users, through: :user_links
 
   def self.find_by_full_uri(uri)
-    params = uri.query.respond_to?(:split) ? uri.query.split('?') : nil
-    find_by(host: uri.host, path: uri.path, uri: params.sort)
+    # params = uri.query.respond_to?(:split) ? Hash[*uri.query.split('=')].sort : nil
+    find_or_initialize_by(host: uri.host, path: uri.path)
   end
 
   ## Instance methods
