@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 class LinksService
-  include Singleton
 
   TAGS = %w[h1 h2 h3 h4 h5 p span b li strong tt i big small em caption label].freeze
 
@@ -14,12 +11,7 @@ class LinksService
     TAGS.each do |tag|
       dom.xpath("//#{tag}").map { |obj| payload[tag].push(obj.text.strip) }
     end
-    counter(payload.values.join.strip).to_h
-  end
-
-  private
-
-  def counter(text)
-    @counter ||= WordsCounted.count(text).token_frequency[1..10]
+    filtered_words = StopWords.filter payload.values.flatten.reject(&:empty?)
+    WordsCounted.count(filtered_words.join).token_frequency[1..10]
   end
 end

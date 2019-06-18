@@ -3,7 +3,7 @@
 module Workspace
   class LinksController < ApplicationController
     before_action :set_id, only: :update
-    
+
     def create
       @message = {}
       # It validates URL scheme using URI predefined regular expression.
@@ -18,13 +18,13 @@ module Workspace
           link = Link.find_by_full_uri(uri)
           unless link.persisted?
             link = Link.new(host: uri.host, path: uri.path, params: params_sorted)
-            link.common_keys = LinksService.instance.perform(response.body)
+            link.common_keys = LinksService.new.perform(response.body)
             link.save
           end
           current_user.links << link
         end
       end
-      render json: @message
+      render json: @message and return
     end
 
     def update
