@@ -22,7 +22,7 @@ module Workspace
         end
         current_user.links << link
       end
-      redirect_to workspace_path
+      redirect_to root_path
     end
 
     def update

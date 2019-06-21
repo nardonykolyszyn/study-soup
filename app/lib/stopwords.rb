@@ -5,6 +5,7 @@ module StopWords
   TOKEN_REGEXP = /^[a-zA-Z0-9]+$/
 
    STOP_WORDS = [
+    'does', 'do', 'call', 'easy', 'contact',
     'a','cannot','into','our','thus','about','co','is','ours','to','above',
     'could','it','ourselves','together','across','down','its','out','too',
     'after','during','itself','over','toward','afterwards','each','last','own',
